@@ -50,7 +50,7 @@
 
 #define AUDIO_OBJECT_AUDIO_READER_WRITER ( 0 )
 #define AUDIO_OBJECT_AUDIO_FILE_PLAYBACK ( 0 )
-#define AUDIO_OBJECT_AUDIO_FILE_RECORDER ( 0 )
+#define AUDIO_OBJECT_AUDIO_FILE_RECORDER ( 1 ) // Kick needs it: its SampleRecorder and Looper are built on DRecorder
 #define AUDIO_OBJECT_SF_SYNTH            ( 0 )
 
 #pragma once

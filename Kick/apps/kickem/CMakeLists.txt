@@ -8,6 +8,10 @@ set(TargetCompany MUSICTribe)
 project(${TargetName} VERSION ${TargetVersion})
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
 
+# The other apps generate config.h; the simulator had fallen out of step and did not.
+set(TargetSrc_DIR ".")
+configure_file(${CMAKE_SOURCE_DIR}/config.h.in ${CMAKE_CURRENT_BINARY_DIR}/config.h)
+
 juce_add_gui_app(${TargetName} 
         PRODUCT_NAME ${TargetName}
         COMPANY_NAME ${TargetCompany}

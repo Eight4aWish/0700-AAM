@@ -175,6 +175,24 @@ public:
         // Visibility...
         w->setVisible( true );
 
+#if !( JUCE_LINUX || __linux__ )
+        // Desktop debugging aid (not for the device): KICK_SNAPSHOT=<file.png> renders the window
+        // to a PNG after KICK_SNAPSHOT_DELAY_MS (default 4000) and quits.
+        if( auto path = juce::SystemStats::getEnvironmentVariable( "KICK_SNAPSHOT", {} ); path.isNotEmpty() )
+        {
+            const int delay = juce::SystemStats::getEnvironmentVariable( "KICK_SNAPSHOT_DELAY_MS", "4000" ).getIntValue();
+            juce::Timer::callAfterDelay( delay, [this, path] {
+                auto image = w->createComponentSnapshot( w->getLocalBounds() );
+                juce::File file( path );
+                file.deleteFile();
+                juce::FileOutputStream out( file );
+                juce::PNGImageFormat().writeImageToStream( image, out );
+                out.flush();
+                quit();
+            } );
+        }
+#endif
+
 #if PERFETTO
         MelatoninPerfetto::get().beginSession();
 #endif
