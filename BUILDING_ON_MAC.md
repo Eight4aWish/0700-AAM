@@ -4,9 +4,9 @@ This is the `macos-build` branch of [Eight4aWish/0700-AAM](https://github.com/Ei
 a fork of [MusicTribeOpenSource/0700-AAM](https://github.com/MusicTribeOpenSource/0700-AAM). It is
 not made, approved or supported by Music Tribe. `main` follows upstream unchanged.
 
-The release does not build as published (issue #9): three modules and a CMake file it
-depends on were not released, a fourth was removed for licensing, and AudIO ships with its
-recorder switched off. This branch fills those gaps so that the KICK's own app (`Kick`
+The release does not build as published (issue #9): two modules the app includes, and the
+CMake file that registers them, were not released; a third module was removed for licensing;
+and AudIO ships with its recorder switched off. This branch fills those gaps so that the KICK's own app (`Kick`
 target) builds and runs on macOS. It starts and shows its Projects screen at 1024 × 600.
 
 Built on macOS (Apple Silicon) with Apple clang 21, CMake 4.0 and Ninja, against JUCE 7.0.12
