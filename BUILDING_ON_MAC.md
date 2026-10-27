@@ -48,7 +48,9 @@ screen. Two things to know there:
   `/app/demos/`, `/app/templates/`, `/data/sounds` and `/home/Kick/{projects,logs,prefs}`.
   Without them it crashes on start in `RecentProject::visibilityChanged()`, which indexes
   `recentItems` even when it is empty. Symlinking `Kick/assets`, the demos and the templates
-  into `/app` works on a desktop.
+  into `/app` works on a desktop. This branch now guards that line, so the empty list should
+  no longer crash it (not yet re-tested without the folders); the demos and templates still
+  need the paths to appear.
 - The `KICK_SNAPSHOT` hook below is compiled out on Linux; Xvfb and ImageMagick's `import`
   take a headless screenshot instead.
 

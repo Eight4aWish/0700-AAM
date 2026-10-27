@@ -434,7 +434,10 @@ namespace ui
             selectedIndex          = ( 0 < ( projectList.getSize() ) ) ? projectStartIndex : 0;
 
             clearAllShowBorder();
-            recentItems[selectedIndex]->showBorder( true );
+            // With no demos, templates or projects (a desktop build without the device's /app
+            // folders) the list is empty, and indexing it crashed on start (issue #9).
+            if( juce::isPositiveAndBelow( (int)selectedIndex, (int)recentItems.size() ) )
+                recentItems[selectedIndex]->showBorder( true );
 
             // Check if we have come here on first launch,
             if( bFirstLaunch )
