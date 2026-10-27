@@ -38,6 +38,20 @@ Smaller changes: AudIO's `AUDIO_OBJECT_AUDIO_FILE_RECORDER` switched on (Kick's 
 needs it); `<thread>` and `<sys/stat.h>` included where libc++ and macOS need them; the
 simulator target generates `config.h` like the other apps.
 
+## Linux
+
+Confirmed by HeyMoustache in issue #9 (27 Oct): this branch builds the `Kick` target on
+Ubuntu 24.04 (GCC 13.3, CMake 3.28, Ninja) with no source changes, and runs to the Projects
+screen. Two things to know there:
+
+- On Linux the app uses the device's own paths (`kick_paths.cpp`): `/app/assets`,
+  `/app/demos/`, `/app/templates/`, `/data/sounds` and `/home/Kick/{projects,logs,prefs}`.
+  Without them it crashes on start in `RecentProject::visibilityChanged()`, which indexes
+  `recentItems` even when it is empty. Symlinking `Kick/assets`, the demos and the templates
+  into `/app` works on a desktop.
+- The `KICK_SNAPSHOT` hook below is compiled out on Linux; Xvfb and ImageMagick's `import`
+  take a headless screenshot instead.
+
 ## Not done yet
 
 - **The simulator (`KT_KickEM`)** still fails: its panel code predates the current packet
