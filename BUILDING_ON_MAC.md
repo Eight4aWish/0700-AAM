@@ -1,5 +1,9 @@
 # Building the KICK app on a Mac
 
+This is the `macos-build` branch of [Eight4aWish/0700-AAM](https://github.com/Eight4aWish/0700-AAM),
+a fork of [MusicTribeOpenSource/0700-AAM](https://github.com/MusicTribeOpenSource/0700-AAM). It is
+not made, approved or supported by Music Tribe. `main` follows upstream unchanged.
+
 The release does not build as published (issue #9): three modules and a CMake file it
 depends on were not released, a fourth was removed for licensing, and AudIO ships with its
 recorder switched off. This branch fills those gaps so that the KICK's own app (`Kick`
